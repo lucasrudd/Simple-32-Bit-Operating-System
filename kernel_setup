@@ -1,0 +1,15 @@
+echo SETTING UP THE OBJECT FILES...
+
+echo ASSEMBLING KERNEL
+nasm -f elf32 kernel.asm -o asmk.o
+
+echo ASSEMBLING MULTIBOOT HEADER
+nasm -f elf32 multiboot_header.asm -o boot_header.o
+
+echo COMPILING KERNEL
+gcc -m32 -c kernel.c -o ckern.o
+
+echo LINKING OBJECT FILES
+ld --nmagic -m elf_i386 -T link.ld
+
+echo FINISHED
